@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/jperelli/vue2-leaflet-markercluster#readme",
   "dependencies": {
+    "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.4",
     "vue2-leaflet": "0.0.42"
   },
