@@ -53,12 +53,10 @@ At main Vue configuration, this will make the component available to all templat
     @import "~leaflet.markercluster/dist/MarkerCluster.css";
     @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-## Sample app
-
-There is a working example in file `src/dev.vue`. You can run that demo with this:
+## Develop and build
 
     npm install
-    npm run dev
+    npm run build
 
 ## Author
 

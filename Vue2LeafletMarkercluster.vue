@@ -32,9 +32,9 @@ export default {
     deferredMountedTo (parent) {
       this.parent = parent
       var that = this.mapObject
-      this.$children.forEach((child) => {
-        child.deferredMountedTo(that)
-      })
+      for (var i = 0; i < this.$children.length; i++) {
+        this.$children[i].deferredMountedTo(that)
+      }
       if (this.visible) {
         this.mapObject.addTo(parent)
       }
