@@ -1,6 +1,6 @@
 {
   "name": "vue2-leaflet-markercluster",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "markercluster plugin extension for vue2-leaflet package",
   "main": "dist/index.js",
   "scripts": {
