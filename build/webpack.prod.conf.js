@@ -5,6 +5,7 @@ var baseWebpackConfig = require('./webpack.base.conf');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var utils = require('./utils');
+var nodeExternals = require('webpack-node-externals');
 
 var distDir = path.resolve(__dirname, '../dist');
 
@@ -34,11 +35,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // extract css into its own file
     new ExtractTextPlugin('css/[name].[contenthash].css')
   ],
-  externals: {
-      // Use external version of React
-      "leaflet.markercluster": "leaflet.markercluster",
-      "leaflet": "L"
-  }
+  externals: [nodeExternals()]
 });
 
 module.exports = webpackConfig;
