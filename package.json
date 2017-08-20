@@ -24,9 +24,10 @@
   "dependencies": {
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.4",
-    "vue2-leaflet": "0.0.42"
+    "vue2-leaflet": "^0.0.42"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.0",
     "vue-cli": "^2.8.1",
     "webpack-node-externals": "^1.5.4"
   }
