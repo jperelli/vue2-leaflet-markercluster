@@ -62,6 +62,10 @@ At main Vue configuration, this will make the component available to all templat
 
 [Julián Perelli](https://jperelli.com.ar/)
 
+### Contributors
+
+ - [Ahmet Özışık](https://github.com/aozisik)
+
 ## License
 
 MIT
