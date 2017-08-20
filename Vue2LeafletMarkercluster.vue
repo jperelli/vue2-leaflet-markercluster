@@ -13,13 +13,17 @@ const props = {
     type: Boolean,
     custom: true,
     default: true
-  }
+  },
+  options: {
+    type: Object,
+    default: () => ({}),
+  },
 }
 
 export default {
   props: props,
   mounted () {
-    this.mapObject = L.markerClusterGroup()
+    this.mapObject = L.markerClusterGroup(this.options);
 
     if (this.$parent._isMounted) {
       this.deferredMountedTo(this.$parent.mapObject)
