@@ -4,7 +4,8 @@
   "description": "markercluster plugin extension for vue2-leaflet package",
   "main": "dist/Vue2LeafletMarkercluster.js",
   "scripts": {
-    "build": "vue build Vue2LeafletMarkercluster.vue --prod --lib --config build.config.js"
+    "build": "vue build Vue2LeafletMarkercluster.vue --prod --lib --config build.config.js",
+    "example": "vue build example.vue"
   },
   "repository": {
     "type": "git",

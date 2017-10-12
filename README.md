@@ -6,6 +6,21 @@ This is a [markercluster plugin](https://github.com/Leaflet/Leaflet.markercluste
 
     npm install --save vue2-leaflet-markercluster
 
+## Demo
+
+    git clone git@github.com:jperelli/vue2-leaflet-markercluster.git
+    cd vue2-leaflet-markercluster
+    yarn
+    yarn example
+
+    # or alternatively using npm
+    npm install
+    npm run example
+
+Then you should be able to bnavigate with your browser and see the demo in http://localhost:4000/
+
+You can see the demo code in the file [example.vue](example.vue)
+
 ## Usage
 
 ### on &lt;template&gt; add
