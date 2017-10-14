@@ -2,7 +2,7 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-marker-cluster>
+    <v-marker-cluster :options="clusterOptions">
       <v-marker v-for="l in locations" :lat-lng="l.latlng" :icon="icon">
         <v-popup :content="l.text"></v-popup>
       </v-marker>
@@ -46,8 +46,17 @@
       return {
         locations,
         icon,
+        clusterOptions: {},
         initialLocation: window.L.latLng(-34.9205, -57.953646)
       }
+    },
+    mounted() {
+      setTimeout(() => {
+        console.log('done')
+        this.$nextTick(() =>{
+          this.clusterOptions = { disableClusteringAtZoom: 11 }
+        });
+      }, 5000);
     }
   }
 </script>
