@@ -8,29 +8,20 @@
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
-const props = {
-  visible: {
-    type: Boolean,
-    custom: true,
-    default: true
-  },
-  options: {
-    type: Object,
-    default: () => ({}),
-  },
-}
 
 export default {
-  props: props,
-  mounted () {
-    this.mapObject = L.markerClusterGroup(this.options);
-
-    if (this.$parent._isMounted) {
-      this.deferredMountedTo(this.$parent.mapObject)
+  props: [ 'options' ],
+  watch: {
+    options: function() {
+      this._remove()
+      this._add()
     }
   },
+  mounted () {
+    this._add()
+  },
   beforeDestroy () {
-    this.setVisible(false)
+    this._remove()
   },
   methods: {
     deferredMountedTo (parent) {
@@ -39,21 +30,17 @@ export default {
       for (var i = 0; i < this.$children.length; i++) {
         this.$children[i].deferredMountedTo(that)
       }
-      if (this.visible) {
-        this.mapObject.addTo(parent)
+      this.mapObject.addTo(parent)
+    },
+    _remove () {
+      this.parent.removeLayer(this.mapObject)
+    },
+    _add () {
+      this.mapObject = L.markerClusterGroup(this.options)
+      if (this.$parent._isMounted) {
+        this.deferredMountedTo(this.$parent.mapObject)
       }
     },
-    setVisible (newVal, oldVal) {
-      if (newVal === oldVal) return
-      if (this.mapObject) {
-        if (newVal) {
-          this.mapObject.addTo(this.parent)
-        }
-        else {
-          this.parent.removeLayer(this.mapObject)
-        }
-      }
-    }
   }
 }
 </script>
