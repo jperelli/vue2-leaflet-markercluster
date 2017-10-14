@@ -1,6 +1,6 @@
 <template>
   <v-map :zoom=10 :center="initialLocation">
-    <v-icondefault :image-path="images"></v-icondefault>
+    <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster>
       <v-marker v-for="l in locations" :lat-lng="l.latlng" :icon="icon">
