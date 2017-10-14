@@ -2931,11 +2931,11 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-leaflet.markercluster@^1.0.4:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.0.6.tgz#2d8069ef7881142e71173d86fb55d332af4742d7"
+leaflet.markercluster@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.1.0.tgz#547c480c46422a3c6199c8b757705f0c3afd2090"
 
-leaflet@^1.0.1, leaflet@^1.0.3:
+leaflet@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.2.0.tgz#fd5d93d9cb00091f5f8a69206d0d6744c1c82697"
 
@@ -5016,11 +5016,11 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.3.tgz#22787de4e37ebd9339b74223bc467d1adee30545"
 
-vue2-leaflet@^0.0.42:
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/vue2-leaflet/-/vue2-leaflet-0.0.42.tgz#847ff4abd0942d8169efe4443336621e5a175bea"
+vue2-leaflet@^0.0.55:
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/vue2-leaflet/-/vue2-leaflet-0.0.55.tgz#1a5b134ac0b7849f80513400290c9901fa3ba3b4"
   dependencies:
-    leaflet "^1.0.1"
+    leaflet "^1.2.0"
     vue "^2.0.0-rc.8"
 
 vue@^2.0.0-rc.8, vue@^2.1.10:
