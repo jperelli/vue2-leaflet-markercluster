@@ -17,7 +17,7 @@ This is a [markercluster plugin](https://github.com/Leaflet/Leaflet.markercluste
     npm install
     npm run example
 
-Then you should be able to bnavigate with your browser and see the demo in http://localhost:4000/
+Then you should be able to navigate with your browser and see the demo in http://localhost:4000/
 
 You can see the demo code in the file [example.vue](example.vue)
 
