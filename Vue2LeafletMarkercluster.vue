@@ -26,11 +26,10 @@ export default {
   methods: {
     deferredMountedTo (parent) {
       this.parent = parent
-      var that = this.mapObject
       for (var i = 0; i < this.$children.length; i++) {
-        this.$children[i].deferredMountedTo(that)
+        this.$children[i].deferredMountedTo(this.markerCluster)
       }
-      this.mapObject.addTo(parent);
+      this.markerCluster.addTo(parent);
       [
         'clusterclick',
         'clustermouseover',
@@ -39,17 +38,17 @@ export default {
         'spiderfied',
         'unspiderfied'
       ].forEach(eName =>
-        this.mapObject.on(
+        this.markerCluster.on(
           eName,
           e => this.$emit('l-' + eName, e)
         )
       )
     },
     _remove () {
-      this.parent.removeLayer(this.mapObject)
+      this.parent.removeLayer(this.markerCluster)
     },
     _add () {
-      this.mapObject = L.markerClusterGroup(this.options)
+      this.markerCluster = L.markerClusterGroup(this.options)
       if (this.$parent._isMounted) {
         this.deferredMountedTo(this.$parent.mapObject)
       }
