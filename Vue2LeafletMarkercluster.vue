@@ -30,7 +30,20 @@ export default {
       for (var i = 0; i < this.$children.length; i++) {
         this.$children[i].deferredMountedTo(that)
       }
-      this.mapObject.addTo(parent)
+      this.mapObject.addTo(parent);
+      [
+        'clusterclick',
+        'clustermouseover',
+        'clustermouseout',
+        'animationend',
+        'spiderfied',
+        'unspiderfied'
+      ].forEach(eName =>
+        this.mapObject.on(
+          eName,
+          e => this.$emit('l-' + eName, e)
+        )
+      )
     },
     _remove () {
       this.parent.removeLayer(this.mapObject)
