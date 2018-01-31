@@ -10,7 +10,10 @@ import 'leaflet.markercluster'
 
 
 export default {
-  props: [ 'options' ],
+  props: [
+    'options',
+    'bulk'
+  ],
   watch: {
     options: function() {
       this._remove()
@@ -26,8 +29,22 @@ export default {
   methods: {
     deferredMountedTo (parent) {
       this.parent = parent
-      for (var i = 0; i < this.$children.length; i++) {
-        this.$children[i].deferredMountedTo(this.markerCluster)
+      if (this.bulk) {
+        console.log('bulksm')
+        for (var i = 0; i < this.$children.length; i++) {
+          this.$children[i].parent = this.markerCluster
+          for (var j = 0; j < this.$children[i].$children.length; j++) {
+            if (typeof this.$children[i].$children[j].deferredMountedTo === "function") {
+              this.$children[i].$children[j].deferredMountedTo(this.$children[i].mapObject);
+            }
+          }
+        }
+        this.markerCluster.addLayers(this.$children.map(c => c.mapObject))
+      }
+      else {
+        for (var i = 0; i < this.$children.length; i++) {
+          this.$children[i].deferredMountedTo(this.markerCluster)
+        }
       }
       this.markerCluster.addTo(parent);
       [

@@ -2,7 +2,7 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-marker-cluster :options="clusterOptions" @l-clusterclick="click()">
+    <v-marker-cluster :bulk="true" :options="clusterOptions" @l-clusterclick="click()">
       <v-marker v-for="l in locations" :lat-lng="l.latlng" :icon="icon">
         <v-popup :content="l.text"></v-popup>
       </v-marker>
@@ -17,8 +17,8 @@
   import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
   function rand(n) {
-    let max = n + 0.1
-    let min = n - 0.1
+    let max = n + 30
+    let min = n - 30
     return Math.random() * (max - min) + min;
   }
 
@@ -38,7 +38,7 @@
     },
     data () {
       let locations = []
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 30000; i++) {
         locations.push({
           latlng: window.L.latLng(rand(-34.9205), rand(-57.953646)),
           text: 'Hola ' + i
