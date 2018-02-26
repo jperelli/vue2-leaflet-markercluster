@@ -29,8 +29,8 @@ export default {
   methods: {
     deferredMountedTo (parent) {
       this.parent = parent
+      this._isMounted = false
       if (this.bulk) {
-        console.log('bulksm')
         for (var i = 0; i < this.$children.length; i++) {
           this.$children[i].parent = this.markerCluster
           for (var j = 0; j < this.$children[i].$children.length; j++) {
@@ -47,6 +47,7 @@ export default {
         }
       }
       this.markerCluster.addTo(parent);
+      this._isMounted = true;
       [
         'clusterclick',
         'clustermouseover',

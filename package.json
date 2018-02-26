@@ -5,7 +5,8 @@
   "main": "dist/Vue2LeafletMarkercluster.js",
   "scripts": {
     "build": "vue build Vue2LeafletMarkercluster.vue --prod --lib --config build.config.js",
-    "example": "vue build example.vue"
+    "example": "vue build example.vue",
+    "example_bulk": "vue build example_bulk.vue"
   },
   "repository": {
     "type": "git",
