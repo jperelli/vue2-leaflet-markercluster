@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import Vue2Leaflet from 'vue2-leaflet'
+  import * as Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletMarkercluster from './Vue2LeafletMarkercluster'
   import iconUrl from 'leaflet/dist/images/marker-icon.png'
   import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
@@ -24,11 +24,11 @@
 
   export default {
     components: {
-      'v-map': Vue2Leaflet.Map,
-      'v-tilelayer': Vue2Leaflet.TileLayer,
-      'v-icondefault': Vue2Leaflet.IconDefault,
-      'v-marker': Vue2Leaflet.Marker,
-      'v-popup': Vue2Leaflet.Popup,
+      'v-map': Vue2Leaflet.LMap,
+      'v-tilelayer': Vue2Leaflet.LTileLayer,
+      'v-icondefault': Vue2Leaflet.LIconDefault,
+      'v-marker': Vue2Leaflet.LMarker,
+      'v-popup': Vue2Leaflet.LPopup,
       'v-marker-cluster': Vue2LeafletMarkercluster
     },
     methods: {
@@ -69,7 +69,8 @@
 <style>
   @import "~leaflet/dist/leaflet.css";
   html, body {
-    height: 100%
+    height: 100%;
+    margin: 0;
   }
   @import "~leaflet.markercluster/dist/MarkerCluster.css";
   @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
