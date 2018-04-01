@@ -2,8 +2,8 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-marker-cluster :options="clusterOptions" @l-clusterclick="click()">
-      <v-marker v-for="l in locations" :lat-lng="l.latlng" :icon="icon">
+    <v-marker-cluster :options="clusterOptions" @clusterclick="click()">
+      <v-marker v-for="l in locations" :key="l.id" :lat-lng="l.latlng" :icon="icon">
         <v-popup :content="l.text"></v-popup>
       </v-marker>
     </v-marker-cluster>
@@ -40,6 +40,7 @@
       let locations = []
       for (let i = 0; i < 100; i++) {
         locations.push({
+          id: i,
           latlng: window.L.latLng(rand(-34.9205), rand(-57.953646)),
           text: 'Hola ' + i
         })
@@ -51,7 +52,7 @@
       return {
         locations,
         icon,
-        clusterOptions: {},
+        clusterOptions: { animate: false },
         initialLocation: window.L.latLng(-34.9205, -57.953646)
       }
     },
@@ -59,7 +60,7 @@
       setTimeout(() => {
         console.log('done')
         this.$nextTick(() =>{
-          this.clusterOptions = { disableClusteringAtZoom: 11 }
+          this.clusterOptions = { animate: false, disableClusteringAtZoom: 11 }
         });
       }, 5000);
     }
@@ -68,10 +69,10 @@
 
 <style>
   @import "~leaflet/dist/leaflet.css";
+  @import "~leaflet.markercluster/dist/MarkerCluster.css";
+  @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
   html, body {
     height: 100%;
     margin: 0;
   }
-  @import "~leaflet.markercluster/dist/MarkerCluster.css";
-  @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 </style>

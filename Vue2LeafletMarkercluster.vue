@@ -8,51 +8,9 @@
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import propsBinder from './utils/propsBinder.js'
+import findRealParent from './utils/findRealParent.js'
 
-const propsBinder = (vueElement, leafletElement, props, options) => {
-  const keys = Object.keys(props);
-  for (let i = 0; i < keys.length; i += 1) {
-    const key = keys[i];
-    const setMethodName = `set${capitalizeFirstLetter(key)}`;
-    const deepValue = (props[key].type === Object) ||
-      (props[key].type === Array) ||
-      (Array.isArray(props[key].type));
-    if (props[key].custom) {
-      vueElement.$watch(key, (newVal, oldVal) => {
-        vueElement[setMethodName](newVal, oldVal);
-      }, {
-        deep: deepValue,
-      });
-    } else if (setMethodName === 'setOptions') {
-      vueElement.$watch(key, (newVal, oldVal) => {
-        L.setOptions(leafletElement, newVal);
-      }, {
-        deep: deepValue,
-      });
-    } else {
-      vueElement.$watch(key, (newVal, oldVal) => {
-        leafletElement[setMethodName](newVal);
-      }, {
-        deep: deepValue,
-      });
-    }
-  }
-};
-
-const findRealParent = (firstVueParent) => {
-  let found = false;
-  while (!found) {
-    if (firstVueParent.mapObject === undefined) {
-      firstVueParent = firstVueParent.$parent;
-    } else {
-      found = true;
-    }
-  }
-  return firstVueParent;
-};
 
 const props = {
   options: {
