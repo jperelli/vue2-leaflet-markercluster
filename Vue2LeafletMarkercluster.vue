@@ -8,9 +8,7 @@
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
-import propsBinder from './utils/propsBinder.js'
-import findRealParent from './utils/findRealParent.js'
-
+import { findRealParent, propsBinder } from 'vue2-leaflet'
 
 const props = {
   options: {

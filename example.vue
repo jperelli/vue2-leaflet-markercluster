@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  import L from 'leaflet'
   import * as Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletMarkercluster from './Vue2LeafletMarkercluster'
   import iconUrl from 'leaflet/dist/images/marker-icon.png'
@@ -41,26 +42,26 @@
       for (let i = 0; i < 100; i++) {
         locations.push({
           id: i,
-          latlng: window.L.latLng(rand(-34.9205), rand(-57.953646)),
+          latlng: L.latLng(rand(-34.9205), rand(-57.953646)),
           text: 'Hola ' + i
         })
       }
-      let icon = window.L.icon(Object.assign({},
-        window.L.Icon.Default.prototype.options,
+      let icon = L.icon(Object.assign({},
+        L.Icon.Default.prototype.options,
         {iconUrl, shadowUrl}
       ))
       return {
         locations,
         icon,
-        clusterOptions: { animate: false },
-        initialLocation: window.L.latLng(-34.9205, -57.953646)
+        clusterOptions: {},
+        initialLocation: L.latLng(-34.9205, -57.953646)
       }
     },
     mounted() {
       setTimeout(() => {
         console.log('done')
         this.$nextTick(() =>{
-          this.clusterOptions = { animate: false, disableClusteringAtZoom: 11 }
+          this.clusterOptions = { disableClusteringAtZoom: 11 }
         });
       }, 5000);
     }
