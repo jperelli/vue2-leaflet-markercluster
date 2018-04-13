@@ -18,7 +18,8 @@
   ],
   "author": "Julián Perelli (http://jperelli.com.ar/)",
   "contributors": [
-    "Ahmet Özışık (https://github.com/aozisik)"
+    "Ahmet Özışık (https://github.com/aozisik)",
+    "Nader Toukabri (https://nader.tech)"
   ],
   "license": "MIT",
   "bugs": {
@@ -27,7 +28,7 @@
   "homepage": "https://github.com/jperelli/vue2-leaflet-markercluster#readme",
   "dependencies": {
     "leaflet.markercluster": "^1.3.0",
-    "vue2-leaflet": "github:naderio/Vue2Leaflet"
+    "vue2-leaflet": "^1.0.2"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
