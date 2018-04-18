@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <slot></slot>
+  <div style="display: none;">
+    <slot v-if="ready"></slot>
   </div>
 </template>
 
@@ -8,51 +8,44 @@
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
+import { findRealParent, propsBinder } from 'vue2-leaflet'
+
+const props = {
+  options: {
+    type: Object,
+    default() { return {}; },
+  },
+};
 
 export default {
-  props: [ 'options' ],
-  watch: {
-    options: function() {
-      this._remove()
-      this._add()
-    }
+  props,
+  data() {
+    return {
+      ready: false,
+    };
   },
-  mounted () {
-    this._add()
+  mounted() {
+    this.mapObject = L.markerClusterGroup(this.options);
+    L.DomEvent.on(this.mapObject, this.$listeners);
+    propsBinder(this, this.mapObject, props);
+    this.ready = true;
+    this.parentContainer = findRealParent(this.$parent);
+    this.parentContainer.addLayer(this);
   },
-  beforeDestroy () {
-    this._remove()
+  beforeDestroy() {
+    this.parentContainer.removeLayer(this);
   },
   methods: {
-    deferredMountedTo (parent) {
-      this.parent = parent
-      for (var i = 0; i < this.$children.length; i++) {
-        this.$children[i].deferredMountedTo(this.markerCluster)
-      }
-      this.markerCluster.addTo(parent);
-      [
-        'clusterclick',
-        'clustermouseover',
-        'clustermouseout',
-        'animationend',
-        'spiderfied',
-        'unspiderfied'
-      ].forEach(eName =>
-        this.markerCluster.on(
-          eName,
-          e => this.$emit('l-' + eName, e)
-        )
-      )
-    },
-    _remove () {
-      this.parent.removeLayer(this.markerCluster)
-    },
-    _add () {
-      this.markerCluster = L.markerClusterGroup(this.options)
-      if (this.$parent._isMounted) {
-        this.deferredMountedTo(this.$parent.mapObject)
+    addLayer(layer, alreadyAdded) {
+      if (!alreadyAdded) {
+        this.mapObject.addLayer(layer.mapObject);
       }
     },
-  }
-}
+    removeLayer(layer, alreadyRemoved) {
+      if (!alreadyRemoved) {
+        this.mapObject.removeLayer(layer.mapObject);
+      }
+    },
+  },
+};
 </script>
