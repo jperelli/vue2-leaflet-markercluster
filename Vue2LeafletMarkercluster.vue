@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <slot></slot>
+  <div style="display: none;">
+    <slot v-if="ready"></slot>
   </div>
 </template>
 
@@ -8,69 +8,59 @@
 import L from 'leaflet'
 import 'leaflet.markercluster'
 
+import { findRealParent, propsBinder } from 'vue2-leaflet'
+
+const props = {
+  options: {
+    type: Object,
+    default() { return {}; },
+  },
+  bulk: {
+    type: Boolean,
+    default() { return false; },
+  },
+};
 
 export default {
-  props: [
-    'options',
-    'bulk'
-  ],
-  watch: {
-    options: function() {
-      this._remove()
-      this._add()
-    }
+  props,
+  data() {
+    return {
+      ready: false,
+    };
   },
-  mounted () {
-    this._add()
+  mounted() {
+    this.mapObject = L.markerClusterGroup(this.options);
+    L.DomEvent.on(this.mapObject, this.$listeners);
+    propsBinder(this, this.mapObject, props);
+    this.ready = true;
+    this.parentContainer = findRealParent(this.$parent);
+    this.parentContainer.addLayer(this);
+    this.childrenLayers = []
   },
-  beforeDestroy () {
-    this._remove()
+  beforeDestroy() {
+    this.parentContainer.removeLayer(this);
   },
   methods: {
-    deferredMountedTo (parent) {
-      this.parent = parent
-      this._isMounted = false
-      if (this.bulk) {
-        for (var i = 0; i < this.$children.length; i++) {
-          this.$children[i].parent = this.markerCluster
-          for (var j = 0; j < this.$children[i].$children.length; j++) {
-            if (typeof this.$children[i].$children[j].deferredMountedTo === "function") {
-              this.$children[i].$children[j].deferredMountedTo(this.$children[i].mapObject);
-            }
+    addLayer(layer, alreadyAdded) {
+      if (!alreadyAdded) {
+        if (!this.bulk) {
+          this.mapObject.addLayer(layer.mapObject);
+        }
+        else {
+          this.childrenLayers.push(layer.mapObject)
+          if (this.$children.length == this.childrenLayers.length) {
+            this.mapObject.addLayers(this.childrenLayers);
+            this.childrenLayers = [];
+            console.log('mounted all')
           }
         }
-        this.markerCluster.addLayers(this.$children.map(c => c.mapObject))
-      }
-      else {
-        for (var i = 0; i < this.$children.length; i++) {
-          this.$children[i].deferredMountedTo(this.markerCluster)
-        }
-      }
-      this.markerCluster.addTo(parent);
-      this._isMounted = true;
-      [
-        'clusterclick',
-        'clustermouseover',
-        'clustermouseout',
-        'animationend',
-        'spiderfied',
-        'unspiderfied'
-      ].forEach(eName =>
-        this.markerCluster.on(
-          eName,
-          e => this.$emit('l-' + eName, e)
-        )
-      )
-    },
-    _remove () {
-      this.parent.removeLayer(this.markerCluster)
-    },
-    _add () {
-      this.markerCluster = L.markerClusterGroup(this.options)
-      if (this.$parent._isMounted) {
-        this.deferredMountedTo(this.$parent.mapObject)
       }
     },
-  }
-}
+    removeLayer(layer, alreadyRemoved) {
+      if (!alreadyRemoved) {
+        this.mapObject.removeLayer(layer.mapObject);
+      }
+    },
+  },
+};
 </script>

@@ -80,6 +80,7 @@ At main Vue configuration, this will make the component available to all templat
 ### Contributors
 
  - [Ahmet Özışık](https://github.com/aozisik)
+ - [Nader Toukabri](https://nader.tech)
 
 ## License
 
