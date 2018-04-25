@@ -68,6 +68,21 @@ At main Vue configuration, this will make the component available to all templat
     @import "~leaflet.markercluster/dist/MarkerCluster.css";
     @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 
+## Access markercluster layer directly
+
+If you need to access other markecluster methods, like [refreshClusters()](https://github.com/Leaflet/Leaflet.markercluster#refreshing-the-clusters-icon), you can do it with a ref on the markercluster vue element and using the `mapObject` property
+
+    ...
+    <v-marker-cluster ref="clusterRef">
+      ...
+    </v-marker-cluster>
+    ...
+
+    ...
+    this.$refs.clusterRef.mapObject.refreshClusters()
+    ...
+
+
 ## Develop and build
 
     npm install
