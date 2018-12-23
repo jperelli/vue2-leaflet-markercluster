@@ -6,7 +6,8 @@
   "scripts": {
     "build": "vue build Vue2LeafletMarkercluster.vue --prod --lib --config build.config.js",
     "example": "vue build example.vue",
-    "example-geojson": "vue build example-geojson.vue"
+    "example-geojson": "vue build example-geojson.vue",
+    "example-bulk": "vue build example_bulk.vue"
   },
   "repository": {
     "type": "git",

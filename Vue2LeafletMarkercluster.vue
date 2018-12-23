@@ -15,6 +15,10 @@ const props = {
     type: Object,
     default() { return {}; },
   },
+  bulk: {
+    type: Boolean,
+    default() { return false; },
+  },
 };
 
 export default {
@@ -31,6 +35,7 @@ export default {
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this);
+    this.childrenLayers = []
   },
   beforeDestroy() {
     this.parentContainer.removeLayer(this);
@@ -38,7 +43,17 @@ export default {
   methods: {
     addLayer(layer, alreadyAdded) {
       if (!alreadyAdded) {
-        this.mapObject.addLayer(layer.mapObject);
+        if (!this.bulk) {
+          this.mapObject.addLayer(layer.mapObject);
+        }
+        else {
+          this.childrenLayers.push(layer.mapObject)
+          if (this.$children.length == this.childrenLayers.length) {
+            this.mapObject.addLayers(this.childrenLayers);
+            this.childrenLayers = [];
+            console.log('mounted all')
+          }
+        }
       }
     },
     removeLayer(layer, alreadyRemoved) {
