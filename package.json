@@ -28,10 +28,10 @@
   },
   "homepage": "https://github.com/jperelli/vue2-leaflet-markercluster#readme",
   "dependencies": {
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "^1.4.1",
+    "vue2-leaflet": "^1.2.3"
   },
   "devDependencies": {
-    "vue2-leaflet": "^1.2.3",
     "babel-preset-env": "^1.6.0",
     "vue-cli": "~2.8.2",
     "webpack": "^3.12.0",
