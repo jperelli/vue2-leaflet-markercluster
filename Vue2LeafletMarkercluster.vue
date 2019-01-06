@@ -5,10 +5,9 @@
 </template>
 
 <script>
-import L from 'leaflet'
 import 'leaflet.markercluster'
 
-import { findRealParent, propsBinder } from 'vue2-leaflet'
+import { findRealParent, propsBinder, L } from 'vue2-leaflet'
 
 const props = {
   options: {

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import L from 'leaflet'
   import * as Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletMarkercluster from './Vue2LeafletMarkercluster'
 
@@ -149,7 +148,7 @@
         geoJsons,
         geoJsonOptions,
         clusterOptions: {},
-        initialLocation: L.latLng(-34.9205, -57.953646)
+        initialLocation: Vue2Leaflet.L.latLng(-34.9205, -57.953646)
       }
     },
     mounted() {
