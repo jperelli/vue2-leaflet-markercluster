@@ -4,8 +4,7 @@ module.exports = {
   webpack: {
     externals: [
       nodeExternals(),
-      {'leaflet': 'L'},
-      {'leaflet.markercluster': {root: ['leaflet', 'markercluster']}}
+      // {'leaflet.markercluster': {root: ['leaflet', 'markercluster']}}
     ]
   }
 }

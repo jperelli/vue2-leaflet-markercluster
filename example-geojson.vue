@@ -2,7 +2,7 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
     <v-marker-cluster :options="clusterOptions" @clusterclick="click()">
-      <v-geo-json v-for="geoJson in geoJsons" :geojson="geoJson" :options="geoJsonOptions"></v-geo-json>
+      <v-geo-json v-for="geoJson in geoJsons" :key="geoJson.id" :geojson="geoJson" :options="geoJsonOptions"></v-geo-json>
     </v-marker-cluster>
   </v-map>
 </template>
@@ -32,6 +32,7 @@
         }
       }
       let geoJsons = [{
+          "id": "1",
           "type": "Feature",
           "properties": {
               "popupContent": "This is the Auraria West Campus",
@@ -88,6 +89,7 @@
               ]
           }
       },{
+          "id": "2",
           "type": "Feature",
           "properties": {
               "popupContent": "This is the Auraria West Campus",
