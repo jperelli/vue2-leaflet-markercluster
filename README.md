@@ -36,6 +36,13 @@ something like this
         </v-marker>
       </v-marker-cluster>
     </v-map>
+    
+if you want to set some options, use
+    <v-marker-cluster :options="{foo: 'bar'}">
+        .....
+    </v-marker-cluster>
+    
+See Leaflet doc : https://github.com/Leaflet/Leaflet.markercluster#all-options for all available options
 
 ### on &lt;script&gt; add
 
