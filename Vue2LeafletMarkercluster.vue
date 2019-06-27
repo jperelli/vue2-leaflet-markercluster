@@ -47,7 +47,7 @@ export default {
       if (!alreadyRemoved) {
         this.mapObject.removeLayer(layer.mapObject);
       }
-    },
-  },
+    }
+  }
 };
 </script>
