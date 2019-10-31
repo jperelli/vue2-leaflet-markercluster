@@ -2,7 +2,7 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-marker-cluster :options="clusterOptions" @clusterclick="click()">
+    <v-marker-cluster :options="clusterOptions" @clusterclick="click()" @ready="ready">
       <v-marker v-for="l in locations" :key="l.id" :lat-lng="l.latlng" :icon="icon">
         <v-popup :content="l.text"></v-popup>
       </v-marker>
@@ -33,9 +33,8 @@
       'v-marker-cluster': Vue2LeafletMarkercluster
     },
     methods: {
-      click: function (e) {
-        alert("clusterclick")
-      }
+      click: (e) => console.log("clusterclick", e),
+      ready: (e) => console.log('ready', e),
     },
     data () {
       let locations = []
