@@ -30,6 +30,9 @@ export default {
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this);
+    this.$nextTick(() => {
+      this.$emit('ready', this.mapObject);
+    });
   },
   beforeDestroy() {
     this.parentContainer.removeLayer(this);
@@ -44,7 +47,7 @@ export default {
       if (!alreadyRemoved) {
         this.mapObject.removeLayer(layer.mapObject);
       }
-    },
-  },
+    }
+  }
 };
 </script>
