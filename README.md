@@ -38,6 +38,7 @@ something like this
     </v-map>
     
 if you want to set some options, use
+
     <v-marker-cluster :options="{foo: 'bar'}">
         .....
     </v-marker-cluster>
