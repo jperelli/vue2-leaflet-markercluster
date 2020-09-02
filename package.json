@@ -1,7 +1,7 @@
 {
   "name": "vue2-leaflet-markercluster",
-  "version": "3.1.0",
-  "description": "markercluster plugin extension for vue2-leaflet package",
+  "version": "3.1.1",
+  "description": "Fork of markercluster plugin extension for vue2-leaflet package. Markercluster repository is not updated anymore, yet on master branch there are some interesting featuers. This fork to overcome lack of releases.",
   "main": "dist/Vue2LeafletMarkercluster.js",
   "scripts": {
     "build": "vue build Vue2LeafletMarkercluster.vue --prod --lib --config build.config.js",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/jperelli/vue2-leaflet-markercluster#readme",
   "dependencies": {
-    "leaflet.markercluster": "^1.4.1"
+    "leaflet.markercluster": "git://github.com/Leaflet/Leaflet.markercluster.git#93bf5408ad84b74ea42f55ccb6ca0450daa41427"
   },
   "peerDependencies": {
     "leaflet": "^1.3.4"
