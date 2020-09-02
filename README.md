@@ -1,6 +1,12 @@
 # vue2-leaflet-markercluster
+  "description": "Fork of markercluster plugin extension for vue2-leaflet package. ",
 
-This is a [markercluster plugin](https://github.com/Leaflet/Leaflet.markercluster) extension for [vue2-leaflet package](https://github.com/KoRiGaN/Vue2Leaflet)
+
+This is a fork of [VueJs wrapper](https://github.com/jperelli/vue2-leaflet-markercluster) of [markercluster plugin](https://github.com/Leaflet/Leaflet.markercluster). It is an extension for [vue2-leaflet package](https://github.com/KoRiGaN/Vue2Leaflet).
+
+**Markercluster repository is not updated anymore, yet on master branch there are some interesting features. This fork exists to overcome lack of releases.**
+
+**USE AT YOUR OWN RISK**
 
 ## Install
 
